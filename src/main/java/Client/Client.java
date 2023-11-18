@@ -12,15 +12,25 @@ public class Client {
 
     public Client(){ };
 
-    public void connect(String host, int port){
+    public void connect(String host, int port) {
         try (Socket clientSocket = new Socket(host, port);
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))
-        ){
-            out.println("Валера");
+             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))) {
 
+            Scanner sc = new Scanner(System.in);
+
+            System.out.print(in.readLine()); // Чтение приветствия от сервера
+            out.println(sc.nextLine()); // Отправка имени на сервер
+
+            System.out.print(in.readLine()); // Чтение ответа от сервера
+            out.println(sc.nextInt()); // Отправка возраста
+
+            System.out.print(in.readLine()); // Чтение ответа от сервера
+
+            sc.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
 }
