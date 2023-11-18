@@ -1,0 +1,3 @@
+rootProject.name = 'Model_OSI'
+include 'Server'
+
